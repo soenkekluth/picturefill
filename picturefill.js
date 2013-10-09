@@ -33,8 +33,9 @@
 					picImg = w.document.createElement( "img" );
 					picImg.alt = ps[ i ].getAttribute( "data-alt" );
 				}
-
-				picImg.src =  matchedEl.getAttribute( "data-src" );
+				if(picImg.src !== matchedEl.getAttribute( "data-src" )){
+					picImg.src =  matchedEl.getAttribute( "data-src" );
+				}
 				matchedEl.appendChild( picImg );
 			}
 			else if( picImg ){
