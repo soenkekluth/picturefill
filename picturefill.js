@@ -23,30 +23,11 @@
                 matches = [];
 
                 // See if which sources match
-                for (var j = 0, jl = sources.length; j < jl; j++) {
-                    media = sources[j].getAttribute("data-media");
-                    mediaList = [];
-
-                    if (media) {
-                        mediaList = media.split(',');
-                        hasMatch = true;
-
-                        for (var k = 0, kl = mediaList.length; k < kl; k++) {
-                            if (window.matchMedia && !window.matchMedia(mediaList[k]).matches) {
-                                hasMatch = false;
-                                break;
-                            }
-                        }
-
-                        if(hasMatch){
-                            console.log(media);
-                        }
-                        //console.log(media, hasMatch);
-                    }
-
-                    // if there's no media specified, OR window.matchMedia is supported
-                    if (hasMatch || !media) {
-                        matches.push(sources[j]);
+                for( var j = 0, jl = sources.length; j < jl; j++ ){
+                    var media = sources[ j ].getAttribute( "data-media" );
+                    // if there's no media specified, OR w.matchMedia is supported
+                    if( !media || ( window.matchMedia && window.matchMedia( media ).matches ) ){
+                        matches.push( sources[ j ] );
                     }
                 }
 
@@ -57,8 +38,9 @@
 
                 if (matches.length) {
 
-                    //console.dir(matches);
                     var matchedEl = matches.pop();
+                    //console.log(matchedEl);
+
                     if (!picImg || picImg.parentNode.nodeName === "NOSCRIPT") {
                         picImg = document.createElement("img");
                         picImg.alt = ps[i].getAttribute("data-alt");
