@@ -43,7 +43,9 @@
 
                     if (!picImg || picImg.parentNode.nodeName === "NOSCRIPT") {
                         picImg = document.createElement("img");
-                        picImg.alt = ps[i].getAttribute("data-alt");
+                        if(ps[i].getAttribute("data-alt")){
+                            picImg.alt = ps[i].getAttribute("data-alt");
+                        }
                     }
                     if (picImg.src !== matchedEl.getAttribute("data-src")) {
                         picImg.src = matchedEl.getAttribute("data-src");
